@@ -9,17 +9,19 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    SoundsManager.cpp \
     main.cpp \
     mainwindow.cpp
 
 HEADERS += \
+    SoundsManager.h \
     mainwindow.h
 
 FORMS += \
     mainwindow.ui
 
 RESOURCES += \
-    CSound.wav
+    Sounds/CSound.wav
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
