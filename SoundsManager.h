@@ -3,19 +3,21 @@
 
 #include <QSoundEffect>
 
-enum Genre { house, disco };
-enum Sound { c, d, e, g, a, b};
+enum Genre { House, Disco };
+enum Sound { C, D, E, F, G, A, B };
 
 class SoundsManager : public QObject
 {
 Q_OBJECT
 
 public:
-    SoundsManager(Genre genre = house);
+    SoundsManager(Genre genre = House);
 
     void ChangeVolume();
 
-    void LoadSounds(Genre genre);
+    void SetGenre(Genre newGenre);
+
+    void LoadSounds();
 
     bool SoundsLoaded() const;
 
@@ -24,6 +26,8 @@ public:
 private:
     std::vector<std::unique_ptr<QSoundEffect>> sounds;
     Genre currentGenre;
+    std::vector<std::string> genreNames = {"House", "Disco"};
+    std::vector<std::string> soundNames = {"C", "D", "E", "F", "G", "A", "B"};
 };
 
 

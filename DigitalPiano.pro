@@ -21,7 +21,13 @@ FORMS += \
     mainwindow.ui
 
 RESOURCES += \
-    Sounds/CSound.wav
+    Sounds/House/CSound.wav \
+    Sounds/House/DSound.wav \
+    Sounds/House/ESound.wav \
+    Sounds/House/FSound.wav \
+    Sounds/House/GSound.wav \
+    Sounds/House/ASound.wav \
+    Sounds/House/BSound.wav
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

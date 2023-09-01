@@ -1,11 +1,23 @@
 #include "SoundsManager.h"
+#include <QUrl>
+#include <QString>
 
 SoundsManager::SoundsManager(Genre genre)
 {
-    LoadSounds(genre);
-    auto effect = std::make_unique<QSoundEffect>();
-    effect->setSource(QUrl("qrc:Sounds/CSound.wav"));
-    sounds.push_back(std::move(effect));
+    int nrOfSounds = 7;
+    sounds.reserve(nrOfSounds);
+    std::generate_n(std::back_inserter(sounds), nrOfSounds, [] { return std::make_unique<QSoundEffect>(); });
+    currentGenre = genre;
+    LoadSounds();
+}
+
+void SoundsManager::SetGenre(Genre newGenre)
+{
+    if(currentGenre != newGenre)
+    {
+        currentGenre = newGenre;
+        LoadSounds();
+    }
 }
 
 void SoundsManager::ChangeVolume()
@@ -13,9 +25,19 @@ void SoundsManager::ChangeVolume()
     ;
 }
 
-void SoundsManager::LoadSounds(Genre genre)
+void SoundsManager::LoadSounds()
 {
-    currentGenre = genre;
+    int i = 0;
+    for(auto& sound : sounds)
+    {
+        QString path = QString("qrc:Sounds/");
+        path.append(genreNames[currentGenre]);
+        path.append("/");
+        path.append(soundNames[i]);
+        path.append("Sound.wav");
+        sound->setSource(QUrl(path));
+        i++;
+    }
 }
 
 bool SoundsManager::SoundsLoaded() const
