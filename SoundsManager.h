@@ -3,7 +3,6 @@
 
 #include <QSoundEffect>
 
-enum Genre { House, Disco };
 enum Sound { C, D, E, F, G, A, B, CSharp, DSharp, FSharp, GSharp, ASharp };
 
 class SoundsManager : public QObject
@@ -11,11 +10,11 @@ class SoundsManager : public QObject
 Q_OBJECT
 
 public:
-    SoundsManager(Genre genre = House);
+    SoundsManager(int pitch = 4);
 
     void ChangeVolume(float newVolume);
 
-    void SetGenre(Genre newGenre);
+    void SetPitch(int newPitch);
 
     void LoadSounds();
 
@@ -27,9 +26,8 @@ public:
 
 private:
     std::vector<std::unique_ptr<QSoundEffect>> sounds;
-    Genre currentGenre;
-    std::vector<std::string> genreNames = {"House", "Disco"};
-    std::vector<std::string> soundNames = {"C", "D", "E", "F", "G", "A", "B", "CSharp", "DSharp", "FSharp", "GSharp", "ASharp"};
+    int currentPitch;
+    std::vector<QString> soundNames = {"C", "D", "E", "F", "G", "A", "B", "CSharp", "DSharp", "FSharp", "GSharp", "ASharp"};
 };
 
 

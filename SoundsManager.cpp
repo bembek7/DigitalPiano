@@ -2,20 +2,20 @@
 #include <QUrl>
 #include <QString>
 
-SoundsManager::SoundsManager(Genre genre)
+SoundsManager::SoundsManager(int pitch)
 {
     int nrOfSounds = 12;
     sounds.reserve(nrOfSounds);
     std::generate_n(std::back_inserter(sounds), nrOfSounds, [] { return std::make_unique<QSoundEffect>(); });
-    currentGenre = genre;
+    currentPitch = pitch;
     LoadSounds();
 }
 
-void SoundsManager::SetGenre(Genre newGenre)
+void SoundsManager::SetPitch(int newPitch)
 {
-    if(currentGenre != newGenre)
+    if(currentPitch != newPitch)
     {
-        currentGenre = newGenre;
+        currentPitch = newPitch;
         LoadSounds();
     }
 }
@@ -35,13 +35,14 @@ void SoundsManager::LoadSounds()
     for(auto& sound : sounds)
     {
         QString path = QString("qrc:Sounds/");
-        path.append(genreNames[currentGenre]);
+        path.append(QString::number(currentPitch));
         path.append("/");
         path.append(soundNames[i]);
-        path.append("Sound.wav");
+        path.append(".wav");
         sound->setSource(QUrl(path));
         i++;
     }
+    //throw exception file
 }
 
 bool SoundsManager::SoundsLoaded() const

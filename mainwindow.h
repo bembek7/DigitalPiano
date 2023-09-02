@@ -21,6 +21,8 @@ public:
 private slots:
     void on_VolumeSlider_valueChanged(int value);
 
+    void on_PitchChoose_valueChanged(int value);
+
 private:
     void BindSoundToButton(QPushButton* button, Sound sound);
     void BindButtonToKey(QKeySequence keySequence, QPushButton* button);

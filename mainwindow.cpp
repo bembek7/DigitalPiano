@@ -56,3 +56,9 @@ void MainWindow::on_VolumeSlider_valueChanged(int value)
     soundsManager.ChangeVolume(value);
 }
 
+
+void MainWindow::on_PitchChoose_valueChanged(int value)
+{
+    soundsManager.SetPitch(value);
+}
+
