@@ -4,7 +4,7 @@
 #include <QSoundEffect>
 
 enum Genre { House, Disco };
-enum Sound { C, D, E, F, G, A, B };
+enum Sound { C, D, E, F, G, A, B, CSharp, DSharp, FSharp, GSharp, ASharp };
 
 class SoundsManager : public QObject
 {
@@ -19,6 +19,8 @@ public:
 
     void LoadSounds();
 
+    void SetSoundReady(bool isReady, Sound sound);
+
     bool SoundsLoaded() const;
 
     void Play(Sound soundToPlay);
@@ -26,8 +28,9 @@ public:
 private:
     std::vector<std::unique_ptr<QSoundEffect>> sounds;
     Genre currentGenre;
+    bool soundsReady[12] = {1,1,1,1,1,1,1,1,1,1,1,1};
     std::vector<std::string> genreNames = {"House", "Disco"};
-    std::vector<std::string> soundNames = {"C", "D", "E", "F", "G", "A", "B"};
+    std::vector<std::string> soundNames = {"C", "D", "E", "F", "G", "A", "B", "CSharp", "DSharp", "FSharp", "GSharp", "ASharp"};
 };
 
 

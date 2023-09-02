@@ -18,8 +18,12 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+private slots:
+    void on_VolumeSlider_valueChanged(int value);
+
 private:
-    void BindSoundToButton(QPushButton* button, QShortcut *shortcut, Sound sound);
+    void BindSoundToButton(QPushButton* button, Sound sound);
+    void BindButtonToKey(QKeySequence keySequence, QPushButton* button);
 
     Ui::MainWindow *ui;
     SoundsManager soundsManager;

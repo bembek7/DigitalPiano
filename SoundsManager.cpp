@@ -4,7 +4,7 @@
 
 SoundsManager::SoundsManager(Genre genre)
 {
-    int nrOfSounds = 7;
+    int nrOfSounds = 12;
     sounds.reserve(nrOfSounds);
     std::generate_n(std::back_inserter(sounds), nrOfSounds, [] { return std::make_unique<QSoundEffect>(); });
     currentGenre = genre;
@@ -18,6 +18,11 @@ void SoundsManager::SetGenre(Genre newGenre)
         currentGenre = newGenre;
         LoadSounds();
     }
+}
+
+void SoundsManager::SetSoundReady(bool isReady, Sound sound)
+{
+    soundsReady[sound] = isReady;
 }
 
 void SoundsManager::ChangeVolume(float newVolume)
@@ -51,5 +56,5 @@ bool SoundsManager::SoundsLoaded() const
 
 void SoundsManager::Play(Sound sound)
 {
-    sounds[sound]->play();
+    if(soundsReady[sound])sounds[sound]->play();
 }

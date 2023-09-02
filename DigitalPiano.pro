@@ -27,7 +27,12 @@ RESOURCES += \
     Sounds/House/FSound.wav \
     Sounds/House/GSound.wav \
     Sounds/House/ASound.wav \
-    Sounds/House/BSound.wav
+    Sounds/House/BSound.wav \
+    Sounds/House/CSharpSound.wav \
+    Sounds/House/FSharpSound.wav \
+    Sounds/House/GSharpSound.wav \
+    Sounds/House/DSharpSound.wav \
+    Sounds/House/ASharpSound.wav
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
