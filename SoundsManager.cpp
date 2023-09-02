@@ -20,9 +20,13 @@ void SoundsManager::SetGenre(Genre newGenre)
     }
 }
 
-void SoundsManager::ChangeVolume()
+void SoundsManager::ChangeVolume(float newVolume)
 {
-    ;
+    newVolume /= 100;
+    for(auto& sound : sounds)
+    {
+        sound->setVolume(newVolume);
+    }
 }
 
 void SoundsManager::LoadSounds()

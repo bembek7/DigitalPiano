@@ -13,7 +13,7 @@ Q_OBJECT
 public:
     SoundsManager(Genre genre = House);
 
-    void ChangeVolume();
+    void ChangeVolume(float newVolume);
 
     void SetGenre(Genre newGenre);
 
