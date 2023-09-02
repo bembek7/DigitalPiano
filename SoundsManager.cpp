@@ -20,11 +20,6 @@ void SoundsManager::SetGenre(Genre newGenre)
     }
 }
 
-void SoundsManager::SetSoundReady(bool isReady, Sound sound)
-{
-    soundsReady[sound] = isReady;
-}
-
 void SoundsManager::ChangeVolume(float newVolume)
 {
     newVolume /= 100;
@@ -56,5 +51,5 @@ bool SoundsManager::SoundsLoaded() const
 
 void SoundsManager::Play(Sound sound)
 {
-    if(soundsReady[sound])sounds[sound]->play();
+    sounds[sound]->play();
 }

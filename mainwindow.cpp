@@ -41,13 +41,14 @@ MainWindow::~MainWindow()
 
 void MainWindow::BindSoundToButton(QPushButton* button, Sound sound)
 {
-    QObject::connect(button, &QPushButton::pressed, &soundsManager, [=]() {soundsManager.Play(sound); soundsManager.SetSoundReady(false, sound);});
-    QObject::connect(button, &QPushButton::released, &soundsManager, [=]() {soundsManager.SetSoundReady(true, sound);});
+    QObject::connect(button, &QPushButton::pressed, &soundsManager, [=]() {soundsManager.Play(sound);});
 }
 
 void MainWindow::BindButtonToKey(QKeySequence keySequence, QPushButton* button)
 {
-    QObject::connect(new QShortcut((keySequence), this), &QShortcut::activated, button, &QPushButton::click);
+    QShortcut* shortcut = new QShortcut((keySequence), this);
+    shortcut->setAutoRepeat(false);
+    QObject::connect(shortcut, &QShortcut::activated, button, &QPushButton::click);
 }
 
 void MainWindow::on_VolumeSlider_valueChanged(int value)

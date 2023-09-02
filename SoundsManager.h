@@ -28,7 +28,6 @@ public:
 private:
     std::vector<std::unique_ptr<QSoundEffect>> sounds;
     Genre currentGenre;
-    bool soundsReady[12] = {1,1,1,1,1,1,1,1,1,1,1,1};
     std::vector<std::string> genreNames = {"House", "Disco"};
     std::vector<std::string> soundNames = {"C", "D", "E", "F", "G", "A", "B", "CSharp", "DSharp", "FSharp", "GSharp", "ASharp"};
 };
