@@ -32,6 +32,8 @@ MainWindow::MainWindow(QWidget *parent):
     BindButtonToKey(QKeySequence(Qt::Key_Minus), ui->GSharpSoundButton);
     BindSoundToButton(ui->ASharpSoundButton, ASharp);
     BindButtonToKey(QKeySequence(Qt::Key_Equal), ui->ASharpSoundButton);
+    QObject::connect(new QShortcut((Qt::Key_Down), this), &QShortcut::activated, ui->PitchChoose, &QSpinBox::stepDown);
+    QObject::connect(new QShortcut((Qt::Key_Up), this), &QShortcut::activated, ui->PitchChoose, &QSpinBox::stepUp);
 }
 
 MainWindow::~MainWindow()
