@@ -23,9 +23,14 @@ private slots:
 
     void on_PitchChoose_valueChanged(int value);
 
+    void on_SwitchToPlayingButton_clicked();
+
+    void on_SwitchToKeyBindingButoon_clicked();
+
 private:
     void BindSoundToButton(QPushButton* button, Sound sound);
-    void BindButtonToKey(QKeySequence keySequence, QPushButton* button);
+    void BindButtonToKey(const Qt::Key& key, QPushButton* button);
+    void PrepareSound(QPushButton* button, Sound sound);
 
     Ui::MainWindow *ui;
     SoundsManager soundsManager;

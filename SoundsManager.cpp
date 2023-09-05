@@ -20,6 +20,11 @@ void SoundsManager::SetPitch(int newPitch)
     }
 }
 
+Qt::Key SoundsManager::GetSoundBindedKey(Sound sound) const
+{
+    return soundBinds[sound];
+}
+
 void SoundsManager::ChangeVolume(float newVolume)
 {
     newVolume /= 100;
