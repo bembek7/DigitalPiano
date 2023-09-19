@@ -55,6 +55,11 @@ bool SoundsManager::SoundsLoaded() const
     return true;
 }
 
+void SoundsManager::ChangeBinding(Sound sound, const Qt::Key& newKey)
+{
+    soundBinds[sound] = newKey;
+}
+
 void SoundsManager::Play(Sound sound)
 {
     sounds[sound]->play();

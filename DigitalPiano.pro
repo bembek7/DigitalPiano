@@ -10,11 +10,13 @@ CONFIG += c++17
 
 SOURCES += \
     SoundsManager.cpp \
+    keyreceiver.cpp \
     main.cpp \
     mainwindow.cpp
 
 HEADERS += \
     SoundsManager.h \
+    keyreceiver.h \
     mainwindow.h
 
 FORMS += \

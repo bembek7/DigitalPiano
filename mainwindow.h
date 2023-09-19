@@ -2,7 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <SoundsManager.h>
+#include "SoundsManager.h"
 #include <QShortcut>
 #include <QPushButton>
 
@@ -18,6 +18,10 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+    void BindNewKey(const Qt::Key& key);
+    bool IsWaitingForKey() const;
+
+
 private slots:
     void on_VolumeSlider_valueChanged(int value);
 
@@ -29,9 +33,15 @@ private slots:
 
 private:
     void BindSoundToButton(QPushButton* button, Sound sound);
-    void BindButtonToKey(const Qt::Key& key, QPushButton* button);
+    void BindButtonToKey(const Qt::Key& key, QPushButton* button, Sound sound);
     void PrepareSound(QPushButton* button, Sound sound);
+    void UpdateBindingButtonText(QPushButton* button, Sound sound);
+    void WaitForKeyToBind(Sound sound);
 
+    bool waitingForKey = false;
+    Sound soundWaiting;
+    std::vector<QPushButton*> soundButtons;
+    std::vector<QShortcut*> shortcutsButtons;
     Ui::MainWindow *ui;
     SoundsManager soundsManager;
 };

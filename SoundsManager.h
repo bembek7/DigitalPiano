@@ -24,6 +24,8 @@ public:
 
     bool SoundsLoaded() const;
 
+    void ChangeBinding(Sound sound, const Qt::Key& newKey);
+
     void Play(Sound soundToPlay);
 
 private:
