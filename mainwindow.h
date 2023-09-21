@@ -41,6 +41,7 @@ private:
     bool waitingForKey = false;
     Sound soundWaiting;
     std::vector<QPushButton*> soundButtons;
+    std::vector<QPushButton*> bindingButtons;
     std::vector<QShortcut*> shortcutsButtons;
     Ui::MainWindow *ui;
     SoundsManager soundsManager;

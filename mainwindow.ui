@@ -858,7 +858,7 @@
        </font>
       </property>
       <property name="text">
-       <string>Click key you want to be binded or escape to cancel</string>
+       <string>Click key you want to be binded.</string>
       </property>
      </widget>
      <zorder>KeyBindingInfo</zorder>

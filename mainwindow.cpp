@@ -27,23 +27,30 @@ MainWindow::MainWindow(QWidget *parent):
         shortcutsButtons[sound]->setAutoRepeat(false);
         PrepareSound(soundButtons[sound], Sound(sound));
     }
-    UpdateBindingButtonText(ui->CBindButton, C);
-    UpdateBindingButtonText(ui->DBindButton, D);
-    UpdateBindingButtonText(ui->EBindButton, E);
-    UpdateBindingButtonText(ui->FBindButton, F);
-    UpdateBindingButtonText(ui->GBindButton, G);
-    UpdateBindingButtonText(ui->ABindButton, A);
-    UpdateBindingButtonText(ui->BBindButton, B);
-    UpdateBindingButtonText(ui->CSharpBindButton, CSharp);
-    UpdateBindingButtonText(ui->DSharpBindButton, DSharp);
-    UpdateBindingButtonText(ui->FSharpBindButton, FSharp);
-    UpdateBindingButtonText(ui->GSharpBindButton, GSharp);
-    UpdateBindingButtonText(ui->ASharpBindButton, ASharp);
+    bindingButtons.push_back(ui->CBindButton);
+    bindingButtons.push_back(ui->DBindButton);
+    bindingButtons.push_back(ui->EBindButton);
+    bindingButtons.push_back(ui->FBindButton);
+    bindingButtons.push_back(ui->GBindButton);
+    bindingButtons.push_back(ui->ABindButton);
+    bindingButtons.push_back(ui->BBindButton);
+    bindingButtons.push_back(ui->CSharpBindButton);
+    bindingButtons.push_back(ui->DSharpBindButton);
+    bindingButtons.push_back(ui->FSharpBindButton);
+    bindingButtons.push_back(ui->GSharpBindButton);
+    bindingButtons.push_back(ui->ASharpBindButton);
+    for( int sound = C; sound <= ASharp; sound++)
+    {
+        UpdateBindingButtonText(bindingButtons[sound], Sound(sound));
+    }
     QObject::connect(new QShortcut((Qt::Key_Down), this), &QShortcut::activated, ui->PitchChoose, &QSpinBox::stepDown);
     QObject::connect(new QShortcut((Qt::Key_Up), this), &QShortcut::activated, ui->PitchChoose, &QSpinBox::stepUp);
     ui->KeyBindingInfo->setVisible(false);
     ui->stackedWidget->setCurrentIndex(0);
-    QObject::connect(ui->CBindButton, &QPushButton::pressed, &soundsManager, [=]() {WaitForKeyToBind(C);});
+    for( int sound = C; sound <= ASharp; sound++)
+    {
+        QObject::connect(bindingButtons[sound], &QPushButton::pressed, &soundsManager, [=]() {WaitForKeyToBind(Sound(sound));});
+    }
 }
 
 MainWindow::~MainWindow()
@@ -93,6 +100,9 @@ void MainWindow::on_SwitchToPlayingButton_clicked()
     {
         button->setEnabled(true);
     }
+    if(soundWaiting >= C && soundWaiting <= ASharp)UpdateBindingButtonText(bindingButtons[soundWaiting], soundWaiting);
+    waitingForKey = false;
+    ui->KeyBindingInfo->setVisible(false);
 }
 
 void MainWindow::on_SwitchToKeyBindingButoon_clicked()
@@ -109,13 +119,17 @@ void MainWindow::BindNewKey(const Qt::Key& key)
     waitingForKey = false;
     soundsManager.ChangeBinding(soundWaiting, key);
     BindButtonToKey(key, soundButtons[soundWaiting], soundWaiting);
-    UpdateBindingButtonText(ui->CBindButton, C);
+    UpdateBindingButtonText(bindingButtons[soundWaiting], soundWaiting);
+    ui->KeyBindingInfo->setVisible(false);
 }
 
 void MainWindow::WaitForKeyToBind(Sound sound)
 {
+    if(soundWaiting >= C && soundWaiting <= ASharp)UpdateBindingButtonText(bindingButtons[soundWaiting], soundWaiting);
     waitingForKey = true;
     soundWaiting = sound;
+    bindingButtons[soundWaiting]->setText("");
+    ui->KeyBindingInfo->setVisible(true);
 }
 
 bool MainWindow::IsWaitingForKey() const
