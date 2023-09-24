@@ -136,3 +136,29 @@ bool MainWindow::IsWaitingForKey() const
 {
     return waitingForKey;
 }
+
+void MainWindow::on_StartRecordingButton_clicked()
+{
+    if(isRecording)
+    {
+        isRecording = false;
+        ui->StartRecordingButton->setText("Resume");
+        recorder.PauseRecording();
+    }
+    else
+    {
+        isRecording = true;
+        ui->StopRecordingButton->setEnabled(true);
+        ui->StartRecordingButton->setText("Pause");
+        recorder.StartRecording();
+    }
+}
+
+
+void MainWindow::on_StopRecordingButton_clicked()
+{
+    isRecording = false;
+    ui->StopRecordingButton->setEnabled(false);
+    ui->StartRecordingButton->setText("Start");
+    recorder.StopRecording();
+}
