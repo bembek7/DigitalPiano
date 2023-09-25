@@ -1,6 +1,7 @@
 #include "SoundsManager.h"
 #include <QUrl>
 #include <QString>
+#include <QDebug>
 
 SoundsManager::SoundsManager(int pitch)
 {
@@ -47,7 +48,6 @@ void SoundsManager::LoadSounds()
         sound->setSource(QUrl(path));
         i++;
     }
-    //throw exception file
 }
 
 bool SoundsManager::SoundsLoaded() const
