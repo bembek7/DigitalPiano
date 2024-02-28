@@ -6,8 +6,8 @@ The Digital Piano Project is a simple Qt-based application designed to simulate 
 
 The project's code is organized into several classes, including:
 
-SoundsManager: Responsible for managing the playback of musical notes and handling pitch, volume, and key bindings.
+-SoundsManager: Responsible for managing the playback of musical notes and handling pitch, volume, and key bindings.
 
-MainWindow: The main application window, which includes the user interface for interacting with the digital piano.
+-MainWindow: The main application window, which includes the user interface for interacting with the digital piano.
 
-KeyReceiver: An event filter class used for binding custom keys to musical notes.
+-KeyReceiver: An event filter class used for binding custom keys to musical notes.
